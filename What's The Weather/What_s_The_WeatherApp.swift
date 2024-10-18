@@ -1,0 +1,36 @@
+//
+//  What_s_The_WeatherApp.swift
+//  What's The Weather
+//
+//  Created by Jeevan Kaderiya on 12/10/2024.
+//
+
+import SwiftUI
+
+@main
+struct What_s_The_WeatherApp: App {
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+        }
+    }
+}
+
+extension Color {
+    init(_ hex: String) {
+        // Remove '#' if present
+        let hex = hex.replacingOccurrences(of: "#", with: "")
+        
+        // Ensure the hex string is valid and has a length of 6
+        guard hex.count == 6, let rgb = UInt32(hex, radix: 16) else {
+            self = .clear // Fallback color if hex is invalid
+            return
+        }
+        
+        let r = Double((rgb >> 16) & 0xFF) / 255.0
+        let g = Double((rgb >> 8) & 0xFF) / 255.0
+        let b = Double(rgb & 0xFF) / 255.0
+        
+        self.init(red: r, green: g, blue: b)
+    }
+}
